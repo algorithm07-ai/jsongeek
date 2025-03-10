@@ -1,0 +1,38 @@
+{
+  "targets": {
+    "simd": {
+      "outFile": "build/simd.wasm",
+      "textFile": "build/simd.wat",
+      "sourceMap": true,
+      "debug": true,
+      "optimizeLevel": 3,
+      "shrinkLevel": 0,
+      "converge": false,
+      "noAssert": false,
+      "exportStart": false,
+      "exportMemory": true,
+      "exportTable": true,
+      "enable": ["simd"],
+      "disable": [],
+      "runtime": "stub"
+    },
+    "fallback": {
+      "outFile": "build/fallback.wasm",
+      "textFile": "build/fallback.wat",
+      "sourceMap": true,
+      "debug": true,
+      "optimizeLevel": 3,
+      "shrinkLevel": 0,
+      "converge": false,
+      "noAssert": false,
+      "exportStart": false,
+      "exportMemory": true,
+      "exportTable": true,
+      "runtime": "stub"
+    }
+  },
+  "options": {
+    "bindings": "raw",
+    "exportRuntime": true
+  }
+}

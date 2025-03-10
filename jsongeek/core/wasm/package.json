@@ -1,0 +1,17 @@
+{
+  "name": "jsongeek-wasm",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "asbuild:simd": "asc assembly/simd.ts --target simd",
+    "asbuild:fallback": "asc assembly/fallback.ts --target fallback",
+    "asbuild": "npm run asbuild:simd && npm run asbuild:fallback",
+    "test": "node tests"
+  },
+  "dependencies": {
+    "@assemblyscript/loader": "^0.27.5"
+  },
+  "devDependencies": {
+    "assemblyscript": "^0.27.5"
+  }
+}

@@ -1,0 +1,15 @@
+dontinline,*.*_all_jmhStub
+dontinline,*.*_avgt_jmhStub
+dontinline,*.*_sample_jmhStub
+dontinline,*.*_ss_jmhStub
+dontinline,*.*_thrpt_jmhStub
+inline,com/jsongeek/benchmark/JsonParserBenchmark.fastjson2ComplexJson
+inline,com/jsongeek/benchmark/JsonParserBenchmark.fastjson2SimpleJson
+inline,com/jsongeek/benchmark/JsonParserBenchmark.gsonComplexJson
+inline,com/jsongeek/benchmark/JsonParserBenchmark.gsonSimpleJson
+inline,com/jsongeek/benchmark/JsonParserBenchmark.jacksonComplexJson
+inline,com/jsongeek/benchmark/JsonParserBenchmark.jacksonSimpleJson
+inline,com/jsongeek/benchmark/JsonParserBenchmark.jsonGeekComplexJson
+inline,com/jsongeek/benchmark/JsonParserBenchmark.jsonGeekSimpleJson
+inline,com/jsongeek/benchmark/JsonParserBenchmark.setup
+inline,com/jsongeek/benchmark/JsonParserBenchmark.tearDown
