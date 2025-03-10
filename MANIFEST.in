@@ -1,10 +1,15 @@
 include LICENSE
 include README.pypi.md
+include README.md
+include DESCRIPTION.rst
 include pyproject.toml
+include setup.cfg
 recursive-include jsongeek/core/wasm *.wasm
-recursive-include tests *.py
-recursive-include examples *.py
-recursive-include docs *.md *.rst *.py
+recursive-include jsongeek/java *.java *.jar
+recursive-include jsongeek/utils *.py
+recursive-include tests *.py *.json
+recursive-include examples *.py *.java *.json
+recursive-include docs *.md *.rst *.py *.java
 global-exclude *.pyc
 global-exclude __pycache__
 global-exclude .DS_Store
@@ -13,3 +18,5 @@ global-exclude *.pyd
 global-exclude .git*
 global-exclude .pytest_cache
 global-exclude .coverage
+global-exclude .idea
+global-exclude .vscode
