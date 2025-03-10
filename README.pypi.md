@@ -67,8 +67,34 @@ JsonGeekMetrics metrics = parser.getMetrics();
 System.out.println("Performance grade: " + metrics.getPerformanceGrade());
 ```
 
-## Advanced Features
+## Advanced Usage
 
+### Streaming Parsing
+```python
+from jsongeekai import StreamParser
+
+parser = StreamParser()
+with open("large_data.json", "rb") as f:
+    for chunk in parser.iter_parse(f):
+        process(chunk)
+```
+
+### Schema Validation
+```python
+from jsongeekai import JsonValidator
+
+schema = {
+    "type": "object",
+    "properties": {"id": {"type": "integer"}}
+}
+validator = JsonValidator(schema)
+
+# Validation examples
+validator.validate('{"id": 1}')  # Passes
+validator.validate('{"id": "1"}')  # Raises ValidationError
+```
+
+### Parallel Processing
 ```python
 from jsongeekai import JSONParser
 
@@ -89,13 +115,23 @@ metrics = parser.get_performance_metrics()
 print(f"Performance grade: {metrics['performance_grade']}")
 ```
 
-## Contributing
+## Security
 
-We welcome contributions! Please check our [Contributing Guide](https://github.com/algorithm07-ai/jsongeek/blob/main/CONTRIBUTING.md).
+### Vulnerability Reporting
+Please report security vulnerabilities to security@jsongeek.ai. For more details about our security policy and procedures, see our [Security Policy](https://github.com/algorithm07-ai/jsongeek/blob/main/SECURITY.md).
+
+### Data Safety
+JsonGeekAI implements several security measures:
+- Input validation and sanitization
+- Memory safety through WebAssembly sandboxing
+- Configurable parsing depth limits
+- UTF-8 validation options
 
 ## License
+JsonGeekAI is released under the MIT License. See the [LICENSE](https://github.com/algorithm07-ai/jsongeek/blob/main/LICENSE) file for the full text.
 
-MIT License - see the [LICENSE](https://github.com/algorithm07-ai/jsongeek/blob/main/LICENSE) file for details.
+## Contributing
+We welcome contributions! Please check our [Contributing Guide](https://github.com/algorithm07-ai/jsongeek/blob/main/CONTRIBUTING.md).
 
 ## Support
 
