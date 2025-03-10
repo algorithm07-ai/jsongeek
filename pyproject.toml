@@ -5,32 +5,52 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "jsongeekai"
 version = "0.1.1"
-description = "High Performance JSON Parser with SIMD Optimization"
-readme = "README.pypi.md"
+description = "High Performance JSON Parser with SIMD Optimization and AI Features"
+readme = "README.md"
 authors = [
     {name = "JsonGeek Team", email = "support@jsongeek.ai"}
 ]
 license = {text = "MIT"}
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Text Processing :: Markup",
+    "Programming Language :: WebAssembly",
+]
+
+dependencies = [
+    "wasmer>=1.1.0",
+    "wasmer-compiler-cranelift>=1.1.0",
+    "numpy>=1.20.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-benchmark>=3.4.1",
+    "black>=22.3.0",
+    "isort>=5.10.1",
+    "mypy>=0.950",
+]
+ai = [
+    "tensorflow>=2.8.0",
+    "torch>=1.10.0",
 ]
 
 [project.urls]
-Homepage = "https://github.com/zhanghongping/jsongeek"
-Documentation = "https://github.com/zhanghongping/jsongeek/tree/main/docs"
-Repository = "https://github.com/zhanghongping/jsongeek.git"
-"Bug Tracker" = "https://github.com/zhanghongping/jsongeek/issues"
-"Change Log" = "https://github.com/zhanghongping/jsongeek/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/algorithm07-ai/jsongeek"
+Documentation = "https://github.com/algorithm07-ai/jsongeek/tree/main/docs"
+Repository = "https://github.com/algorithm07-ai/jsongeek.git"
+"Bug Tracker" = "https://github.com/algorithm07-ai/jsongeek/issues"
+"Change Log" = "https://github.com/algorithm07-ai/jsongeek/blob/main/CHANGELOG.md"
 
 [tool.black]
 line-length = 88
