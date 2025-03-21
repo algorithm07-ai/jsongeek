@@ -60,11 +60,98 @@
     .period {color: #718096;font-size: 16px;margin-left: 4px;}
     .plan ul {margin: 24px 0;padding-left: 20px;}
     .plan li {margin: 8px 0;}
-    .demo {background: #2D3748;color: white;padding: 40px;border-radius: 12px;max-width: 800px;margin: 40px auto;}
-    .demo h2 {text-align: center;margin-bottom: 24px;}
-    .code {background: var(--code);padding: 20px;border-radius: 8px;margin-top: 20px;font-family: monospace;}
-    .code div {margin-top: 16px;}
-    .code div:first-child {margin-top: 0;}
+    .demo {
+      background: var(--code);
+      color: #E2E8F0;
+      padding: 24px;
+      border-radius: 12px;
+      margin: 24px 0;
+      max-height: 400px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary) rgba(0, 0, 0, 0.2);
+    }
+    .demo::-webkit-scrollbar {
+      width: 8px;
+    }
+    .demo::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+    }
+    .demo::-webkit-scrollbar-thumb {
+      background-color: var(--primary);
+      border-radius: 4px;
+    }
+    .demo pre {
+      margin: 0;
+      white-space: pre;
+    }
+    .demo code {
+      display: block;
+      color: #E2E8F0;
+      font-size: 14px;
+    }
+    .code-container {
+      position: relative !important;
+      max-height: 400px !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      background: #1a202c !important;
+      border-radius: 8px !important;
+      padding: 16px !important;
+      margin: 16px 0 !important;
+    }
+
+    /* 确保 pre 和 code 标签不影响滚动 */
+    .code-container pre,
+    .code-container code {
+      margin: 0 !important;
+      padding: 0 !important;
+      white-space: pre !important;
+      overflow: visible !important;
+    }
+
+    /* 自定义滚动条样式 */
+    .code-container::-webkit-scrollbar {
+      width: 8px !important;
+    }
+
+    .code-container::-webkit-scrollbar-track {
+      background: #2d3748 !important;
+      border-radius: 4px !important;
+    }
+
+    .code-container::-webkit-scrollbar-thumb {
+      background: #4a5568 !important;
+      border-radius: 4px !important;
+    }
+
+    .code-container::-webkit-scrollbar-thumb:hover {
+      background: #718096 !important;
+    }
+
+    /* Firefox 滚动条样式 */
+    .code-container {
+      scrollbar-width: thin !important;
+      scrollbar-color: #4a5568 #2d3748 !important;
+    }
+
+    /* 确保代码示例区域也使用相同的样式 */
+    .demo-section .code-container,
+    .code-examples .code-container,
+    .code .code-container {
+      max-height: 400px !important;
+      overflow-y: auto !important;
+    }
+
+    /* 代码行样式 */
+    .code-container code {
+      display: block !important;
+      line-height: 1.6 !important;
+      color: #e2e8f0 !important;
+      font-family: 'Fira Code', monospace !important;
+      font-size: 14px !important;
+    }
     .page {display: none;}
     .page.active {display: block;}
     nav {margin-bottom: 40px;}
@@ -230,7 +317,15 @@
                 <li>性能监控</li>
                 <li>5×8技术支持</li>
               </ul>
-              <button class="primary" onclick="showPage('pricing')">立即购买</button>
+              <button class="primary" onclick="showPage('contact')">立即购买</button>
+              <div class="contact-info">
+                <div class="contact-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                  </svg>
+                  <span>jsongeekai@sina.com</span>
+                </div>
+              </div>
             </div>
             <div class="plan">
               <h3>企业版</h3>
@@ -252,17 +347,66 @@
           <h2>快速上手</h2>
           <div class="buttons">
             <button class="secondary active" onclick="showDemo('mcp')">MCP验证</button>
-            <button class="secondary" onclick="showDemo('structure')">结构处理</button>
+            <button class="secondary" onclick="showDemo('security')">安全分析</button>
             <button class="secondary" onclick="showDemo('pipeline')">流水线</button>
           </div>
-          <div class="code" id="demo-code">
-            <div>$ pip install jsongeek-pro</div>
-            <div># MCP 协议验证示例</div>
-            <div>$ jsongeek validate message.json \</div>
-            <div>    --mcp \</div>
-            <div>    --strict \</div>
-            <div>    --check-roles \</div>
-            <div>    --check-flow</div>
+          <div class="code-container">
+            <pre><code id="demo-code">$ pip install jsongeek-pro
+
+# MCP协议验证示例
+$ jsongeek validate message.json --mcp
+
+✓ MCP协议验证通过
+  - 消息流完整性: 通过
+    • 角色定义: 完整
+    • 消息序列: 有效
+    • 上下文关联: 正确
+  - 角色转换合法性: 通过
+    • 权限检查: 通过
+    • 转换规则: 符合
+  - 错误处理机制: 通过
+    • 异常捕获: 完整
+    • 恢复策略: 就绪</code></pre>
+          </div>
+          <div class="demo-section" id="security-demo" style="display:none">
+            <div class="code-container">
+              <pre><code>$ pip install jsongeek-pro
+
+# 安全分析示例
+$ jsongeek validate api.json --security
+
+✓ 深度安全分析通过
+  - DeepSeek LLM分析: 通过
+    • 语义理解: 正确
+    • 威胁评估: 低风险
+  - 多层验证: 通过
+    • 注入检测: 安全
+    • 越权风险: 未发现
+  - 数据安全: 通过
+    • 敏感信息: 已加密
+    • 传输保护: SSL/TLS</code></pre>
+            </div>
+          </div>
+          <div class="demo-section" id="pipeline-demo" style="display:none">
+            <div class="code-container">
+              <pre><code>$ pip install jsongeek-pro
+
+# 异步流水线示例
+$ jsongeek pipeline run --config pipeline.json
+
+✓ 高性能处理完成
+  - 基础指标
+    • 处理时间: 756ms
+    • 内存占用: 482MB
+    • 递归深度: 7层
+  - 流式处理
+    • 块大小: 64KB
+    • 并发数: 5
+    • 吞吐量: 15MB/s
+  - 验证结果
+    • MCP协议: 通过
+    • 准确率: 99.9%</code></pre>
+            </div>
           </div>
         </div>
       </div>
@@ -308,18 +452,28 @@
           </div>
           <div class="code-examples">
             <div class="code">
-              <div># 完整性验证示例</div>
-              <div>$ jsongeek validate message.json \</div>
-              <div>    --mcp \</div>
-              <div>    --check-flow \</div>
-              <div>    --strict</div>
+              <div class="code-container">
+                <pre><code># 完整性验证示例
+$ jsongeek validate message.json \
+    --mcp \
+    --check-flow \
+    --strict
+
+✓ MCP 协议验证通过
+  - 消息流完整性: 通过
+  - 角色转换合法性: 通过
+  - 错误处理机制: 通过
+  - 协议遵从度: 100%</code></pre>
+              </div>
             </div>
             <div class="code">
-              <div># 角色验证示例</div>
-              <div>$ jsongeek validate message.json \</div>
-              <div>    --mcp \</div>
-              <div>    --check-roles \</div>
-              <div>    --role-config roles.json</div>
+              <div class="code-container">
+                <pre><code># 角色验证示例
+$ jsongeek validate message.json \
+    --mcp \
+    --check-roles \
+    --role-config roles.json</code></pre>
+              </div>
             </div>
           </div>
         </div>
@@ -356,18 +510,22 @@
           </div>
           <div class="code-examples">
             <div class="code">
-              <div># 多层验证示例</div>
-              <div>$ jsongeek validate data.json \</div>
-              <div>    --max-depth 5 \</div>
-              <div>    --accuracy 0.999 \</div>
-              <div>    --check-deps</div>
+              <div class="code-container">
+                <pre><code># 多层验证示例
+$ jsongeek validate data.json \
+    --max-depth 5 \
+    --accuracy 0.999 \
+    --check-deps</code></pre>
+              </div>
             </div>
             <div class="code">
-              <div># 性能优化示例</div>
-              <div>$ jsongeek process data/ \</div>
-              <div>    --chunk-size 64KB \</div>
-              <div>    --concurrent 5 \</div>
-              <div>    --cache-size 500MB</div>
+              <div class="code-container">
+                <pre><code># 性能优化示例
+$ jsongeek process data/ \
+    --chunk-size 64KB \
+    --concurrent 5 \
+    --cache-size 500MB</code></pre>
+              </div>
             </div>
           </div>
         </div>
@@ -376,40 +534,58 @@
           <div class="metrics">
             <div class="metric-group">
               <h3>处理性能</h3>
-              <ul>
-                <li>单次处理时间：<800ms (AWS c5.4xlarge)</li>
-                <li>并发任务数：5</li>
-                <li>分块大小：64KB</li>
-                <li>缓存访问延迟：<100ms</li>
+              <ul class="feature-group">
+                <li>处理速度: &lt; 800ms (10MB文件)</li>
+                <li>内存占用: &lt; 500MB</li>
+                <li>并发任务: 5</li>
+                <li>分块大小: 64KB</li>
               </ul>
             </div>
             <div class="metric-group">
-              <h3>资源占用</h3>
-              <ul>
-                <li>内存限制：<500MB (RSS)</li>
-                <li>递归深度：>5层</li>
-                <li>验证准确率：>99.9%</li>
-                <li>资源竞争优化</li>
+              <h3>验证准确度</h3>
+              <ul class="feature-group">
+                <li>MCP协议遵从度: 100%</li>
+                <li>数据验证准确率: &gt; 99.9%</li>
+                <li>递归深度: &gt; 5层</li>
+                <li>缓存命中率: &gt; 90%</li>
               </ul>
             </div>
             <div class="metric-group">
-              <h3>MCP协议合规</h3>
-              <ul>
-                <li>消息流完整性验证</li>
-                <li>角色转换合法性检查</li>
-                <li>错误处理机制</li>
-                <li>协议遵从度监控</li>
+              <h3>系统稳定性</h3>
+              <ul class="feature-group">
+                <li>缓存访问延迟: &lt; 100ms</li>
+                <li>错误隔离机制: 完整</li>
+                <li>资源竞争控制: 智能</li>
+                <li>内存泄漏监控: 实时</li>
               </ul>
             </div>
           </div>
-          <div class="code">
-            <div># 性能测试命令</div>
-            <div>$ jsongeek benchmark \</div>
-            <div>    --concurrent 5 \</div>
-            <div>    --chunk-size 64KB \</div>
-            <div>    --max-memory 500MB \</div>
-            <div>    --cache-ttl 100ms \</div>
-            <div>    test_data.json</div>
+          <div class="code-container">
+            <pre><code># 性能测试示例
+$ jsongeek benchmark large_data.json \
+    --concurrent 5 \
+    --chunk-size 64KB \
+    --max-memory 500MB \
+    --target-time 800ms
+
+✓ 性能测试通过
+  - 处理指标
+    • 处理速度: 756ms
+    • 内存占用: 482MB
+    • 并发任务: 5/5
+    • 分块利用: 98.5%
+  
+  - 验证指标
+    • MCP协议: 100%
+    • 准确率: 99.9%
+    • 递归深度: 7层
+    • 缓存命中: 92.3%
+  
+  - 稳定性指标
+    • 延迟控制: 95ms
+    • 错误率: 0%
+    • 资源竞争: 无
+    • 内存稳定</code></pre>
           </div>
         </div>
         <div class="card" id="security">
@@ -445,18 +621,22 @@
           </div>
           <div class="code-examples">
             <div class="code">
-              <div># 安全分析示例</div>
-              <div>$ jsongeek analyze security.json \</div>
-              <div>    --deepseek \</div>
-              <div>    --risk-level high \</div>
-              <div>    --auto-fix</div>
+              <div class="code-container">
+                <pre><code># 安全分析示例
+$ jsongeek analyze security.json \
+    --deepseek \
+    --risk-level high \
+    --auto-fix</code></pre>
+              </div>
             </div>
             <div class="code">
-              <div># 多层防护示例</div>
-              <div>$ jsongeek validate api.json \</div>
-              <div>    --security \</div>
-              <div>    --xss-protection \</div>
-              <div>    --sensitive-data-filter</div>
+              <div class="code-container">
+                <pre><code># 多层防护示例
+$ jsongeek validate api.json \
+    --security \
+    --xss-protection \
+    --sensitive-data-filter</code></pre>
+              </div>
             </div>
           </div>
         </div>
@@ -549,6 +729,14 @@
               <li>5×8技术支持</li>
             </ul>
             <button class="primary" onclick="showPage('contact')">立即购买</button>
+            <div class="contact-info">
+              <div class="contact-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                </svg>
+                <span>jsongeekai@sina.com</span>
+              </div>
+            </div>
           </div>
           <div class="plan">
             <h3>企业版</h3>
@@ -577,119 +765,135 @@
         <div class="card">
           <form id="contact-form">
             <div class="form-group">
-              <label>公司名称</label>
+              <label>您的姓名</label>
               <input type="text" required>
             </div>
             <div class="form-group">
-              <label>联系人</label>
-              <input type="text" required>
-            </div>
-            <div class="form-group">
-              <label>邮箱</label>
+              <label>联系邮箱</label>
               <input type="email" required>
             </div>
             <div class="form-group">
-              <label>需求描述</label>
+              <label>咨询内容</label>
               <textarea required></textarea>
             </div>
-            <button type="submit" class="btn">提交</button>
+            <button type="submit" class="primary">提交</button>
           </form>
-        </div>
-        <div class="contact-info">
-          <h2>其他联系方式</h2>
-          <div class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
-            </svg>
-            <span>sales@jsongeek-pro.com</span>
-          </div>
-          <div class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 12h18M3 6h18M3 18h18"/>
-            </svg>
-            <span>工作时间：周一至周五 9:00-18:00</span>
+          <div class="contact-info">
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+              </svg>
+              <span>jsongeekai@sina.com</span>
+            </div>
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12h18M3 6h18M3 18h18"/>
+              </svg>
+              <span>工作时间：周一至周五 9:00-18:00</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <script>
+      // 邮箱处理
+      function handleContact(type) {
+        if (type === 'enterprise') {
+          window.open('mailto:jsongeekai@sina.com', '_blank');
+        }
+      }
+      
+      // 页面切换
+      function showPage(pageId, section = '') {
+        document.querySelectorAll('.page').forEach(page => {
+          page.classList.remove('active');
+        });
+        
+        const page = document.getElementById(pageId);
+        if (page) {
+          page.classList.add('active');
+          if (section) {
+            const element = document.getElementById(section);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+          window.location.hash = section ? `${pageId}/${section}` : pageId;
+        }
+      }
+    </script>
   </div>
 
   <script>
-    // 路由处理
-    function showPage(pageId, section = '') {
-      // 隐藏所有页面
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-      });
-      
-      // 显示目标页面
-      const targetPage = document.getElementById(pageId);
-      targetPage.classList.add('active');
-      
-      // 如果有section，滚动到对应部分
-      if (section) {
-        const element = document.getElementById(section);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      } else {
-        window.scrollTo(0, 0);
-      }
-      
-      // 更新URL
-      history.pushState({}, '', '#' + pageId + (section ? '/' + section : ''));
-    }
-
     // Demo切换
     function showDemo(type) {
-      const demos = {
-        mcp: [
-          '$ pip install jsongeek-pro',
-          '# MCP 协议验证示例',
-          '$ jsongeek validate message.json \\',
-          '    --mcp \\',
-          '    --strict \\',
-          '    --check-roles \\',
-          '    --check-flow'
-        ],
-        structure: [
-          '# 结构化数据处理示例',
-          '$ jsongeek validate data.json \\',
-          '    --max-depth 5 \\',
-          '    --accuracy 0.999 \\',
-          '    --check-deps \\',
-          '    --concurrent 5'
-        ],
-        pipeline: [
-          '# 异步流水线示例',
-          '$ jsongeek process \\',
-          '    --pipeline "mcp,structure,security" \\',
-          '    --chunk-size 64KB \\',
-          '    --max-memory 500MB \\',
-          '    --cache-ttl 100ms \\',
-          '    input.json'
-        ]
+      const demoCode = {
+        mcp: `$ pip install jsongeek-pro
+
+# MCP协议验证示例
+$ jsongeek validate message.json --mcp
+
+✓ MCP协议验证通过
+  - 消息流完整性: 通过
+    • 角色定义: 完整
+    • 消息序列: 有效
+    • 上下文关联: 正确
+  - 角色转换合法性: 通过
+    • 权限检查: 通过
+    • 转换规则: 符合
+  - 错误处理机制: 通过
+    • 异常捕获: 完整
+    • 恢复策略: 就绪`,
+
+        security: `$ pip install jsongeek-pro
+
+# 安全分析示例
+$ jsongeek validate api.json --security
+
+✓ 深度安全分析通过
+  - DeepSeek LLM分析: 通过
+    • 语义理解: 正确
+    • 威胁评估: 低风险
+  - 多层验证: 通过
+    • 注入检测: 安全
+    • 越权风险: 未发现
+  - 数据安全: 通过
+    • 敏感信息: 已加密
+    • 传输保护: SSL/TLS`,
+
+        pipeline: `$ pip install jsongeek-pro
+
+# 异步流水线示例
+$ jsongeek pipeline run --config pipeline.json
+
+✓ 高性能处理完成
+  - 基础指标
+    • 处理时间: 756ms
+    • 内存占用: 482MB
+    • 递归深度: 7层
+  - 流式处理
+    • 块大小: 64KB
+    • 并发数: 5
+    • 吞吐量: 15MB/s
+  - 验证结果
+    • MCP协议: 通过
+    • 准确率: 99.9%`
       };
-      const code = document.getElementById('demo-code');
-      code.innerHTML = demos[type].map(line => `<div>${line}</div>`).join('');
-      
+
       // 更新按钮状态
-      document.querySelectorAll('.demo .secondary').forEach(btn => {
-        const isActive = btn.textContent.includes({
-          mcp: 'MCP',
-          structure: '结构处理',
-          pipeline: '流水线'
-        }[type]);
-        if (isActive) {
-          btn.classList.add('active');
-          btn.style.background = 'var(--primary)';
-          btn.style.color = 'white';
+      document.querySelectorAll('.demo-buttons button').forEach(btn => {
+        if (btn.getAttribute('onclick').includes(type)) {
+          btn.classList.add('primary');
+          btn.classList.remove('secondary');
         } else {
-          btn.classList.remove('active');
-          btn.style.background = 'transparent';
-          btn.style.color = 'var(--primary)';
+          btn.classList.add('secondary');
+          btn.classList.remove('primary');
         }
       });
+
+      // 更新代码内容
+      document.getElementById('demo-code').textContent = demoCode[type];
     }
 
     // 表单处理

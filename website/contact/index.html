@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联系 JsonGeekAI Pro</title>
+  <style>
+    :root {--primary: #805AD5;}
+    body {font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 20px; line-height: 1.6;}
+    .container {max-width: 800px; margin: 0 auto; padding: 20px;}
+    h1 {color: var(--primary);}
+    .card {background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
+    .form-group {margin-bottom: 20px;}
+    label {display: block; margin-bottom: 8px; color: #444;}
+    input, textarea {width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;}
+    textarea {height: 120px;}
+    .btn {background: var(--primary); color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px;}
+    .contact-info {margin-top: 40px;}
+    .contact-item {display: flex; align-items: center; margin: 10px 0;}
+    .contact-item svg {width: 24px; height: 24px; margin-right: 10px;}
+    nav {margin-bottom: 40px;}
+    nav a {color: var(--primary); text-decoration: none; margin-right: 20px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a href="..">返回主页</a>
+    </nav>
+    <h1>联系我们</h1>
+    <div class="card">
+      <form id="contact-form">
+        <div class="form-group">
+          <label>公司名称</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>联系人</label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label>邮箱</label>
+          <input type="email" required>
+        </div>
+        <div class="form-group">
+          <label>需求描述</label>
+          <textarea required></textarea>
+        </div>
+        <button type="submit" class="btn">提交</button>
+      </form>
+    </div>
+    <div class="contact-info">
+      <h2>其他联系方式</h2>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+        </svg>
+        <span>jsongeekai@sina.com</span>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+        <span>工作时间：周一至周五 9:00-18:00</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('contact-form').onsubmit = function(e) {
+      e.preventDefault();
+      alert('您的需求已收到，我们会尽快与您联系！');
+    };
+  </script>
+</body>
+</html>
