@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何使用JsonGeekAI Pro自动生成Axios Mock响应模板 - JsonGeek Blog</title>
+    <meta name="description" content="学习如何使用JsonGeekAI Pro的AI能力来自动生成高质量的Axios Mock数据，提升开发效率。">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <header class="blog-header">
+        <nav>
+            <a href="/">首页</a>
+            <a href="/docs">文档</a>
+            <a href="/blog">博客</a>
+        </nav>
+    </header>
+
+    <main class="blog-content">
+        <article>
+            <h1>如何使用JsonGeekAI Pro自动生成Axios Mock响应模板</h1>
+            <div class="metadata">
+                <time datetime="2025-03-21">2025年3月21日</time>
+                <span class="author">作者：JsonGeek团队</span>
+            </div>
+
+            <section class="introduction">
+                <p>在现代前端开发中，Mock数据的重要性不言而喻。本文将介绍如何使用JsonGeekAI Pro来自动生成高质量的Axios Mock响应模板，让开发过程更加高效。</p>
+            </section>
+
+            <section class="features">
+                <h2>核心特性</h2>
+                <ul>
+                    <li>基于DeepSeek大语言模型的智能分析</li>
+                    <li>支持复杂数据结构和类型推断</li>
+                    <li>SIMD加速，性能优异</li>
+                    <li>完整的Axios集成支持</li>
+                </ul>
+            </section>
+
+            <section class="installation">
+                <h2>快速开始</h2>
+                <pre><code>npm install -g jsongeek-pro-cli</code></pre>
+                <pre><code>jsongeek config set api_key YOUR_API_KEY</code></pre>
+            </section>
+
+            <section class="example">
+                <h2>实战示例</h2>
+                <p>假设我们有一个获取用户列表的API：</p>
+                <pre><code class="language-javascript">// api/users.js
+import axios from 'axios'
+
+export const getUsers = () => {
+  return axios.get('/api/users')
+}</code></pre>
+
+                <p>使用JsonGeekAI Pro生成Mock数据：</p>
+                <pre><code class="language-bash">jsongeek mock -t axios -e /api/users</code></pre>
+
+                <p>生成的Mock模板：</p>
+                <pre><code class="language-javascript">// mocks/users.js
+export default {
+  'GET /api/users': {
+    code: 200,
+    data: [
+      {
+        id: 1,
+        name: 'John Doe',
+        email: 'john@example.com',
+        role: 'admin',
+        createdAt: '2025-03-21T09:28:54.000Z'
+      },
+      {
+        id: 2,
+        name: 'Jane Smith',
+        email: 'jane@example.com',
+        role: 'user',
+        createdAt: '2025-03-21T09:28:54.000Z'
+      }
+    ],
+    message: 'Success'
+  }
+}</code></pre>
+            </section>
+
+            <section class="advanced">
+                <h2>高级特性</h2>
+                <h3>智能类型推断</h3>
+                <pre><code class="language-bash">jsongeek mock -t axios -e /api/users --smart-type</code></pre>
+
+                <h3>自定义模板</h3>
+                <pre><code class="language-javascript">// jsongeek.config.js
+module.exports = {
+  templates: {
+    response: {
+      code: 200,
+      data: null,
+      message: 'Success'
+    }
+  }
+}</code></pre>
+
+                <h3>批量处理</h3>
+                <pre><code class="language-bash">jsongeek mock -t axios -d ./api --output ./mocks</code></pre>
+            </section>
+
+            <section class="performance">
+                <h2>性能指标</h2>
+                <ul>
+                    <li>处理时间：&lt; 2秒 (10MB文件)</li>
+                    <li>内存占用：&lt; 500MB</li>
+                    <li>递归深度：&gt; 5层</li>
+                    <li>SIMD加速：支持AVX-512指令集</li>
+                </ul>
+            </section>
+
+            <section class="best-practices">
+                <h2>最佳实践</h2>
+                <ol>
+                    <li>使用版本控制管理Mock模板</li>
+                    <li>遵循一致的命名规范</li>
+                    <li>定期更新和维护Mock数据</li>
+                    <li>结合单元测试使用</li>
+                </ol>
+            </section>
+
+            <section class="resources">
+                <h2>相关资源</h2>
+                <ul>
+                    <li>官网：<a href="https://bkq91f1mmd.yourware.so/">JsonGeekAI Pro</a></li>
+                    <li>GitHub：<a href="https://github.com/algorithm07-ai/jsongeek">项目仓库</a></li>
+                    <li>文档：<a href="https://docs.jsongeek-pro.com">在线文档</a></li>
+                </ul>
+            </section>
+        </article>
+    </main>
+
+    <footer class="blog-footer">
+        <p>&copy; 2025 JsonGeek. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/prism.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
