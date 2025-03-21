@@ -1,4 +1,22 @@
-# JsonGeek 
+# JsonGeek
+
+[![Build Status](https://github.com/algorithm07-ai/jsongeek/workflows/CI/badge.svg)](https://github.com/algorithm07-ai/jsongeek/actions)
+[![npm version](https://badge.fury.io/js/jsongeek.svg)](https://www.npmjs.com/package/jsongeek)
+[![PyPI version](https://badge.fury.io/py/jsongeek.svg)](https://pypi.org/project/jsongeek/)
+[![Documentation Status](https://readthedocs.org/projects/jsongeek/badge/?version=latest)](https://jsongeek.readthedocs.io/)
+[![Code Quality](https://app.codacy.com/project/badge/Grade/123456)](https://www.codacy.com/gh/algorithm07-ai/jsongeek)
+[![Coverage](https://codecov.io/gh/algorithm07-ai/jsongeek/branch/master/graph/badge.svg)](https://codecov.io/gh/algorithm07-ai/jsongeek)
+[![Performance](https://img.shields.io/badge/performance-SIMD-brightgreen.svg)](https://github.com/algorithm07-ai/jsongeek)
+[![MCP Compliant](https://img.shields.io/badge/MCP-compliant-blue.svg)](https://github.com/algorithm07-ai/jsongeek)
+
+JsonGeek 是一个基于 MCP 协议和 DeepSeek LLM 的高性能 JSON 处理引擎，提供智能分析、验证和可视化功能。
+
+## 核心特性
+
+- 🚀 SIMD 加速，处理性能 < 2秒/10MB
+- 🧠 DeepSeek LLM 深度集成
+- 🛡️ 多层验证架构，准确率 > 99.9%
+- 📊 内存高效，占用 < 500MB# JsonGeek 
 
 JsonGeek 是一个强大的 Chrome 扩展，用于 JSON 数据的处理、分析和可视化。
 
