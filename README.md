@@ -21,6 +21,14 @@ jsongeek/
 │   ├── manifest.json            # 扩展配置
 │   └── package.json            # 包配置
 │
+├── benchmark/              # 性能测试框架
+│   ├── json-benchmark/    # JSON性能测试
+│   │   ├── src/          # 源代码
+│   │   │   ├── main/     # 主要实现
+│   │   │   └── test/     # 测试用例
+│   │   └── docs/         # 文档
+│   └── results/          # 测试结果
+│
 ├── website/                     # 扩展文档网站
 │   ├── src/                    # 源代码
 │   │   ├── pages/             # 页面组件
@@ -31,6 +39,10 @@ jsongeek/
 │   │   ├── images/          # 图片资源
 │   │   └── icons/           # 图标资源
 │   └── package.json          # 包配置
+│
+├── docs/                 # 项目文档
+│   ├── zh-CN/           # 中文文档
+│   └── en-US/           # 英文文档
 │
 ├── package.json               # 根配置
 └── README.md                 # 项目说明
@@ -56,6 +68,25 @@ jsongeek/
 4. **SIMD 优化**
    - SIMD 加速的 JSON 解析
    - SIMD 优化的数据处理
+
+## 测试框架
+
+我们采用分级测试策略（P0-P2）来确保代码质量：
+
+### P0级别（核心测试）
+- **范围**：语法和边界测试
+- **执行**：强制执行，阻塞发布
+- **工具**：JSONTestSuite
+
+### P1级别（标准测试）
+- **范围**：Schema验证、RFC合规性
+- **执行**：常规执行，可选发布
+- **工具**：JSON Schema Test Suite
+
+### P2级别（扩展测试）
+- **范围**：性能测试、边缘场景
+- **执行**：选择性执行，建议发布
+- **工具**：自定义性能测试套件
 
 ## 开发指南
 
