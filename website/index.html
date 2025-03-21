@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="JsonGeekAI Pro: 基于 Anthropic MCP 协议的智能 JSON 处理引擎，提供业内领先的结构化数据验证能力">
+  <title>JsonGeekAI Pro</title>
+  <script id="yourware-collect-script">
+    (function(win, export_obj) {
+      win['LogAnalyticsObject'] = export_obj;
+      if (!win[export_obj]) {
+        function _collect() {
+          _collect.q.push(arguments);
+        }
+        _collect.q = _collect.q || [];
+        win[export_obj] = _collect;
+      }
+      win[export_obj].l = +new Date();
+    })(window, 'collectEvent');
+  </script>
+  <script async id="yourware-rangers-script" src="collect-rangers-v5.1.12.js"></script>
+  <script src="yourware-lib.umd.js" id="yourware-lib" data-type="page"></script>
+  <style>
+    :root {
+      --primary: #805AD5;
+      --secondary: #4299E1;
+      --text: #4A5568;
+      --bg: #F7FAFC;
+      --code: #1A202C;
+    }
+    * {margin: 0;padding: 0;box-sizing: border-box;}
+    body {font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;}
+    .container {max-width: 1200px;margin: 0 auto;padding: 80px 20px;}
+    header {text-align: center;margin-bottom: 64px;}
+    h1 {
+      background: linear-gradient(90deg,var(--secondary),var(--primary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 48px;
+    }
+    .subtitle {font-size: 20px;color: var(--text);max-width: 600px;margin: 20px auto;}
+    .buttons {display: flex;gap: 16px;justify-content: center;margin-top: 32px;}
+    button {padding: 12px 24px;border-radius: 8px;cursor: pointer;font-weight: 700;font-size: 16px;}
+    .primary {background: var(--primary);color: white;border: none;}
+    .secondary {background: transparent;color: var(--primary);border: 2px solid var(--primary);}
+    .features {display: grid;grid-template-columns: repeat(auto-fit,minmax(280px,1fr));gap: 32px;padding: 40px 0;}
+    .feature {background: white;padding: 24px;border-radius: 12px;box-shadow: 0 4px 6px rgba(0,0,0,.1);cursor:pointer;transition:transform .2s;}
+    .feature:hover {transform:translateY(-5px);}
+    .feature svg {width: 24px;height: 24px;stroke: currentColor;}
+    .feature h3 {font-size: 20px;margin: 16px 0 8px;}
+    .feature p {color: var(--text);}
+    .pricing {background: var(--bg);padding: 80px 0;}
+    .pricing h2 {text-align: center;font-size: 36px;margin-bottom: 40px;}
+    .plans {display: grid;grid-template-columns: repeat(auto-fit,minmax(300px,1fr));gap: 32px;max-width: 1200px;margin: 0 auto;padding: 0 20px;}
+    .plan {background: white;padding: 32px;border-radius: 12px;box-shadow: 0 4px 6px rgba(0,0,0,.1);}
+    .plan h3 {font-size: 24px;}
+    .price {display: flex;align-items: baseline;margin: 16px 0;font-size: 36px;font-weight: 700;}
+    .period {color: #718096;font-size: 16px;margin-left: 4px;}
+    .plan ul {margin: 24px 0;padding-left: 20px;}
+    .plan li {margin: 8px 0;}
+    .demo {background: #2D3748;color: white;padding: 40px;border-radius: 12px;max-width: 800px;margin: 40px auto;}
+    .demo h2 {text-align: center;margin-bottom: 24px;}
+    .code {background: var(--code);padding: 20px;border-radius: 8px;margin-top: 20px;font-family: monospace;}
+    .code div {margin-top: 16px;}
+    .code div:first-child {margin-top: 0;}
+    .page {display: none;}
+    .page.active {display: block;}
+    nav {margin-bottom: 40px;}
+    nav a {color: var(--primary); text-decoration: none; margin-right: 20px;}
+    .install {background: #1A202C; color: #fff; padding: 20px; border-radius: 4px; font-family: monospace;}
+    .form-group {margin-bottom: 20px;}
+    label {display: block; margin-bottom: 8px; color: #444;}
+    input, textarea {width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;}
+    textarea {height: 120px;}
+    .contact-info {margin-top: 40px;}
+    .contact-item {display: flex; align-items: center; margin: 10px 0;}
+    .contact-item svg {width: 24px; height: 24px; margin-right: 10px;}
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin: 24px 0;
+    }
+    .metric-group {
+      background: var(--bg);
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .metric-group h3 {
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    .metric-group ul {
+      list-style: none;
+      padding: 0;
+    }
+    .metric-group li {
+      margin: 8px 0;
+      color: var(--text);
+    }
+    .protocol-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin: 24px 0;
+    }
+    .feature-group {
+      background: var(--bg);
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary);
+    }
+    .feature-group h3 {
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    .feature-group ul {
+      list-style: none;
+      padding: 0;
+    }
+    .feature-group li {
+      margin: 8px 0;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+    }
+    .feature-group li:before {
+      content: "✓";
+      color: var(--primary);
+      margin-right: 8px;
+    }
+    .code-examples {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .code-examples .code {
+      background: var(--code);
+      padding: 16px;
+      border-radius: 8px;
+      color: white;
+      font-family: monospace;
+    }
+    .structure-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin: 24px 0;
+    }
+    .security-features,
+    .toolchain-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin: 24px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 主页 -->
+    <div id="home" class="page active">
+      <div class="container">
+        <header>
+          <h1>JsonGeekAI Pro</h1>
+          <p class="subtitle">业内首创的 MCP 协议验证引擎，提供完整的 Anthropic Message Creation Protocol 支持和深度语义分析能力</p>
+          <div class="buttons">
+            <button class="primary" onclick="showPage('download')">免费试用</button>
+            <button class="secondary" onclick="showPage('docs')">查看文档</button>
+          </div>
+        </header>
+
+        <div class="features">
+          <div class="feature" onclick="showPage('docs', 'mcp')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <h3>MCP 协议验证</h3>
+            <p>完整实现 Anthropic MCP 规范，智能分析消息流完整性和角色转换合法性</p>
+          </div>
+          <div class="feature" onclick="showPage('docs', 'structure')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16v16H4z"/>
+            </svg>
+            <h3>结构化数据处理</h3>
+            <p>多层验证架构，支持>5层递归深度，准确率>99.9%</p>
+          </div>
+          <div class="feature" onclick="showPage('docs', 'performance')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9z"/>
+            </svg>
+            <h3>极致性能</h3>
+            <p>处理速度<800ms，内存占用<500MB，支持5并发任务</p>
+          </div>
+          <div class="feature" onclick="showPage('docs', 'security')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+            </svg>
+            <h3>深度集成</h3>
+            <p>集成 DeepSeek LLM，提供智能分析和全面安全防护</p>
+          </div>
+        </div>
+
+        <div class="pricing">
+          <h2>价格方案</h2>
+          <div class="plans">
+            <div class="plan">
+              <h3>基础版</h3>
+              <div class="price">免费</div>
+              <ul>
+                <li>基础 JSON 验证</li>
+                <li>Schema 验证</li>
+                <li>单文件处理</li>
+                <li>社区支持</li>
+              </ul>
+              <button class="primary" onclick="showPage('download')">立即下载</button>
+            </div>
+            <div class="plan">
+              <h3>专业版</h3>
+              <div class="price">¥9.99<span class="period">/用户/月</span></div>
+              <ul>
+                <li>MCP 协议验证</li>
+                <li>结构化数据处理</li>
+                <li>DeepSeek LLM 集成</li>
+                <li>多层验证架构</li>
+                <li>并发处理支持</li>
+                <li>性能监控</li>
+                <li>5×8技术支持</li>
+              </ul>
+              <button class="primary" onclick="showPage('pricing')">立即购买</button>
+            </div>
+            <div class="plan">
+              <h3>企业版</h3>
+              <div class="price">联系销售</div>
+              <ul>
+                <li>全部专业版功能</li>
+                <li>私有化部署</li>
+                <li>定制开发</li>
+                <li>性能优化</li>
+                <li>SLA保障</li>
+                <li>7×24专属支持</li>
+              </ul>
+              <button class="primary" onclick="showPage('contact')">联系我们</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo">
+          <h2>快速上手</h2>
+          <div class="buttons">
+            <button class="secondary active" onclick="showDemo('mcp')">MCP验证</button>
+            <button class="secondary" onclick="showDemo('structure')">结构处理</button>
+            <button class="secondary" onclick="showDemo('pipeline')">流水线</button>
+          </div>
+          <div class="code" id="demo-code">
+            <div>$ pip install jsongeek-pro</div>
+            <div># MCP 协议验证示例</div>
+            <div>$ jsongeek validate message.json \</div>
+            <div>    --mcp \</div>
+            <div>    --strict \</div>
+            <div>    --check-roles \</div>
+            <div>    --check-flow</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 文档页面 -->
+    <div id="docs" class="page">
+      <div class="container">
+        <nav>
+          <a href="#" onclick="showPage('home');return false">返回主页</a>
+        </nav>
+        <h1>JsonGeekAI Pro 文档</h1>
+        <div class="card" id="mcp">
+          <h2>MCP 协议验证</h2>
+          <div class="protocol-features">
+            <div class="feature-group">
+              <h3>消息流完整性</h3>
+              <ul>
+                <li>角色定义验证</li>
+                <li>消息序列检查</li>
+                <li>上下文关联分析</li>
+                <li>智能异常检测</li>
+              </ul>
+            </div>
+            <div class="feature-group">
+              <h3>角色转换合法性</h3>
+              <ul>
+                <li>角色权限验证</li>
+                <li>转换规则检查</li>
+                <li>状态一致性保障</li>
+                <li>角色冲突预防</li>
+              </ul>
+            </div>
+            <div class="feature-group">
+              <h3>错误处理机制</h3>
+              <ul>
+                <li>精确错误定位</li>
+                <li>智能修复建议</li>
+                <li>错误传播追踪</li>
+                <li>异常恢复方案</li>
+              </ul>
+            </div>
+          </div>
+          <div class="code-examples">
+            <div class="code">
+              <div># 完整性验证示例</div>
+              <div>$ jsongeek validate message.json \</div>
+              <div>    --mcp \</div>
+              <div>    --check-flow \</div>
+              <div>    --strict</div>
+            </div>
+            <div class="code">
+              <div># 角色验证示例</div>
+              <div>$ jsongeek validate message.json \</div>
+              <div>    --mcp \</div>
+              <div>    --check-roles \</div>
+              <div>    --role-config roles.json</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="structure">
+          <h2>结构化数据处理</h2>
+          <div class="structure-features">
+            <div class="feature-group">
+              <h3>多层验证架构</h3>
+              <ul>
+                <li>递归深度 >5 层</li>
+                <li>验证准确率 >99.9%</li>
+                <li>智能类型推断</li>
+                <li>跨层依赖检查</li>
+              </ul>
+            </div>
+            <div class="feature-group">
+              <h3>性能优化</h3>
+              <ul>
+                <li>64KB 分块处理</li>
+                <li>5 并发任务支持</li>
+                <li>缓存命中优化</li>
+                <li>内存占用控制</li>
+              </ul>
+            </div>
+            <div class="feature-group">
+              <h3>数据质量控制</h3>
+              <ul>
+                <li>格式一致性检查</li>
+                <li>数据完整性验证</li>
+                <li>冗余数据检测</li>
+                <li>结构优化建议</li>
+              </ul>
+            </div>
+          </div>
+          <div class="code-examples">
+            <div class="code">
+              <div># 多层验证示例</div>
+              <div>$ jsongeek validate data.json \</div>
+              <div>    --max-depth 5 \</div>
+              <div>    --accuracy 0.999 \</div>
+              <div>    --check-deps</div>
+            </div>
+            <div class="code">
+              <div># 性能优化示例</div>
+              <div>$ jsongeek process data/ \</div>
+              <div>    --chunk-size 64KB \</div>
+              <div>    --concurrent 5 \</div>
+              <div>    --cache-size 500MB</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="performance">
+          <h2>性能指标</h2>
+          <div class="metrics">
+            <div class="metric-group">
+              <h3>处理性能</h3>
+              <ul>
+                <li>单次处理时间：<800ms (AWS c5.4xlarge)</li>
+                <li>并发任务数：5</li>
+                <li>分块大小：64KB</li>
+                <li>缓存访问延迟：<100ms</li>
+              </ul>
+            </div>
+            <div class="metric-group">
+              <h3>资源占用</h3>
+              <ul>
+                <li>内存限制：<500MB (RSS)</li>
+                <li>递归深度：>5层</li>
+                <li>验证准确率：>99.9%</li>
+                <li>资源竞争优化</li>
+              </ul>
+            </div>
+            <div class="metric-group">
+              <h3>MCP协议合规</h3>
+              <ul>
+                <li>消息流完整性验证</li>
+                <li>角色转换合法性检查</li>
+                <li>错误处理机制</li>
+                <li>协议遵从度监控</li>
+              </ul>
+            </div>
+          </div>
+          <div class="code">
+            <div># 性能测试命令</div>
+            <div>$ jsongeek benchmark \</div>
+            <div>    --concurrent 5 \</div>
+            <div>    --chunk-size 64KB \</div>
+            <div>    --max-memory 500MB \</div>
+            <div>    --cache-ttl 100ms \</div>
+            <div>    test_data.json</div>
+          </div>
+        </div>
+        <div class="card" id="security">
+          <h2>安全分析</h2>
+          <div class="security-features">
+            <div class="feature-group">
+              <h3>DeepSeek LLM 集成</h3>
+              <ul>
+                <li>智能安全分析</li>
+                <li>漏洞风险评估</li>
+                <li>代码注入检测</li>
+                <li>最佳实践建议</li>
+              </ul>
+            </div>
+            <div class="feature-group">
+              <h3>多层安全防护</h3>
+              <ul>
+                <li>角色权限验证</li>
+                <li>数据完整性校验</li>
+                <li>跨站脚本防护</li>
+                <li>敏感信息过滤</li>
+              </ul>
+            </div>
+            <div class="feature-group">
+              <h3>安全监控</h3>
+              <ul>
+                <li>实时威胁检测</li>
+                <li>异常行为分析</li>
+                <li>安全日志记录</li>
+                <li>自动修复建议</li>
+              </ul>
+            </div>
+          </div>
+          <div class="code-examples">
+            <div class="code">
+              <div># 安全分析示例</div>
+              <div>$ jsongeek analyze security.json \</div>
+              <div>    --deepseek \</div>
+              <div>    --risk-level high \</div>
+              <div>    --auto-fix</div>
+            </div>
+            <div class="code">
+              <div># 多层防护示例</div>
+              <div>$ jsongeek validate api.json \</div>
+              <div>    --security \</div>
+              <div>    --xss-protection \</div>
+              <div>    --sensitive-data-filter</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="toolchain">
+          <h2>开发者工具链</h2>
+          <div class="toolchain-features">
+            <div class="feature-group">
+              <h3>集成开发</h3>
+              <ul>
+                <li>VSCode 插件</li>
+                <li>命令行工具</li>
+                <li>API 客户端</li>
+                <li>自动化脚本</li>
+              </ul>
+            </div>
+            <div class="feature-group">
+              <h3>调试工具</h3>
+              <ul>
+                <li>性能分析器</li>
+                <li>内存监控</li>
+                <li>日志追踪</li>
+                <li>错误诊断</li>
+              </ul>
+            </div>
+            <div class="feature-group">
+              <h3>CI/CD 支持</h3>
+              <ul>
+                <li>GitHub Actions</li>
+                <li>自动化测试</li>
+                <li>代码质量检查</li>
+                <li>持续部署</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 下载页面 -->
+    <div id="download" class="page">
+      <div class="container">
+        <nav>
+          <a href="#" onclick="showPage('home');return false">返回主页</a>
+        </nav>
+        <h1>下载 JsonGeekAI Pro</h1>
+        <div class="card">
+          <h2>通过 pip 安装</h2>
+          <div class="install">$ pip install jsongeek-pro</div>
+          <h2>或者从 GitHub 下载</h2>
+          <a href="https://github.com/jsongeek/jsongeek-pro" class="btn">前往 GitHub</a>
+          <h2>系统要求</h2>
+          <ul>
+            <li>Python 3.8+</li>
+            <li>内存: 2GB+</li>
+            <li>磁盘空间: 500MB+</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 定价页面 -->
+    <div id="pricing" class="page">
+      <div class="container">
+        <nav>
+          <a href="#" onclick="showPage('home');return false">返回主页</a>
+        </nav>
+        <h1>选择适合您的方案</h1>
+        <div class="plans">
+          <div class="plan">
+            <h3>基础版</h3>
+            <div class="price">免费</div>
+            <ul>
+              <li>基础 JSON 验证</li>
+              <li>Schema 验证</li>
+              <li>单文件处理</li>
+              <li>社区支持</li>
+            </ul>
+            <button class="primary" onclick="showPage('download')">立即下载</button>
+          </div>
+          <div class="plan">
+            <h3>专业版</h3>
+            <div class="price">¥9.99<span class="period">/用户/月</span></div>
+            <ul>
+              <li>MCP 协议验证</li>
+              <li>结构化数据处理</li>
+              <li>DeepSeek LLM 集成</li>
+              <li>多层验证架构</li>
+              <li>并发处理支持</li>
+              <li>性能监控</li>
+              <li>5×8技术支持</li>
+            </ul>
+            <button class="primary" onclick="showPage('contact')">立即购买</button>
+          </div>
+          <div class="plan">
+            <h3>企业版</h3>
+            <div class="price">联系销售</div>
+            <ul>
+              <li>全部专业版功能</li>
+              <li>私有化部署</li>
+              <li>定制开发</li>
+              <li>性能优化</li>
+              <li>SLA保障</li>
+              <li>7×24专属支持</li>
+            </ul>
+            <button class="primary" onclick="showPage('contact')">联系我们</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 联系页面 -->
+    <div id="contact" class="page">
+      <div class="container">
+        <nav>
+          <a href="#" onclick="showPage('home');return false">返回主页</a>
+        </nav>
+        <h1>联系我们</h1>
+        <div class="card">
+          <form id="contact-form">
+            <div class="form-group">
+              <label>公司名称</label>
+              <input type="text" required>
+            </div>
+            <div class="form-group">
+              <label>联系人</label>
+              <input type="text" required>
+            </div>
+            <div class="form-group">
+              <label>邮箱</label>
+              <input type="email" required>
+            </div>
+            <div class="form-group">
+              <label>需求描述</label>
+              <textarea required></textarea>
+            </div>
+            <button type="submit" class="btn">提交</button>
+          </form>
+        </div>
+        <div class="contact-info">
+          <h2>其他联系方式</h2>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+            </svg>
+            <span>sales@jsongeek-pro.com</span>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12h18M3 6h18M3 18h18"/>
+            </svg>
+            <span>工作时间：周一至周五 9:00-18:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 路由处理
+    function showPage(pageId, section = '') {
+      // 隐藏所有页面
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      // 显示目标页面
+      const targetPage = document.getElementById(pageId);
+      targetPage.classList.add('active');
+      
+      // 如果有section，滚动到对应部分
+      if (section) {
+        const element = document.getElementById(section);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        window.scrollTo(0, 0);
+      }
+      
+      // 更新URL
+      history.pushState({}, '', '#' + pageId + (section ? '/' + section : ''));
+    }
+
+    // Demo切换
+    function showDemo(type) {
+      const demos = {
+        mcp: [
+          '$ pip install jsongeek-pro',
+          '# MCP 协议验证示例',
+          '$ jsongeek validate message.json \\',
+          '    --mcp \\',
+          '    --strict \\',
+          '    --check-roles \\',
+          '    --check-flow'
+        ],
+        structure: [
+          '# 结构化数据处理示例',
+          '$ jsongeek validate data.json \\',
+          '    --max-depth 5 \\',
+          '    --accuracy 0.999 \\',
+          '    --check-deps \\',
+          '    --concurrent 5'
+        ],
+        pipeline: [
+          '# 异步流水线示例',
+          '$ jsongeek process \\',
+          '    --pipeline "mcp,structure,security" \\',
+          '    --chunk-size 64KB \\',
+          '    --max-memory 500MB \\',
+          '    --cache-ttl 100ms \\',
+          '    input.json'
+        ]
+      };
+      const code = document.getElementById('demo-code');
+      code.innerHTML = demos[type].map(line => `<div>${line}</div>`).join('');
+      
+      // 更新按钮状态
+      document.querySelectorAll('.demo .secondary').forEach(btn => {
+        const isActive = btn.textContent.includes({
+          mcp: 'MCP',
+          structure: '结构处理',
+          pipeline: '流水线'
+        }[type]);
+        if (isActive) {
+          btn.classList.add('active');
+          btn.style.background = 'var(--primary)';
+          btn.style.color = 'white';
+        } else {
+          btn.classList.remove('active');
+          btn.style.background = 'transparent';
+          btn.style.color = 'var(--primary)';
+        }
+      });
+    }
+
+    // 表单处理
+    document.getElementById('contact-form').onsubmit = function(e) {
+      e.preventDefault();
+      alert('您的需求已收到，我们会尽快与您联系！');
+    };
+
+    // 处理浏览器前进后退
+    window.onpopstate = function() {
+      const hash = window.location.hash.slice(1);
+      const [pageId, section] = hash.split('/');
+      if (pageId) {
+        showPage(pageId, section);
+      } else {
+        showPage('home');
+      }
+    };
+
+    // 初始化页面
+    if (window.location.hash) {
+      const hash = window.location.hash.slice(1);
+      const [pageId, section] = hash.split('/');
+      showPage(pageId, section);
+    }
+  </script>
+</body>
+</html>
